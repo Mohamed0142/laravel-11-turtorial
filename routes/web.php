@@ -24,12 +24,30 @@ Route::get('/contact', function () {
 Route::get('/jobs', function () {
     $jobs = Job::with('employer')->Simplepaginate(3);
 
-    return view('jobs', [
+    return view('jobs.index', [
     'jobs' => Job::all()
     ]);
 });
-Route::get('/jobs/{id}', function ($id)  {
+
+
+Route::get('jobs/create', function () {
+    return view('jobs.create');
+});
+
+Route::get('jobs.show', function ($id)  {
     $job = Job::find($id);
 
     return view('job',['job' => $job ]);
 });
+
+Route::post('/jobs', function () {
+    // validatie
+    job::create([
+        'title' => request('title'),
+        'salary' => request('salary'),
+        'employer_id' => 1
+    ]);
+
+    return redirect('/jobs');
+});
+
