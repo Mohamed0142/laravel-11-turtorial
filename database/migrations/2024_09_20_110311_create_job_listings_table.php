@@ -13,10 +13,16 @@ return new class extends Migration
     {
         Schema::create('job_listings', function (Blueprint $table) {
             $table->id();
-          //  $table->unsignedBigInteger('employer_id');
-            $table->foreignIdFor(\App\Models\User::class);
+
+            // Set the user_id as a foreign key
+            $table->foreignIdFor(\App\Models\User::class)
+                ->constrained() // Ensures that it references the 'id' column on the 'users' table
+                ->onDelete('cascade'); // Optional: adjust this behavior as needed
+
             $table->string('title');
-            $table->string('salary');
+            $table->decimal('salary', 10, 2); // Change salary to decimal for monetary values
+            $table->unsignedBigInteger('employer_id')->nullable(); // Adjust if necessary
+
             $table->timestamps();
         });
     }

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class JobfactoryFactory extends Factory
+class JobFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,7 +19,7 @@ class JobfactoryFactory extends Factory
     {
         return [
             'title' => fake()->jobTitle(),
-            'employer_id' => Employer::factory(),
+            'user_id' => '1',
             'salary' => '50.000'
         ];
     }
