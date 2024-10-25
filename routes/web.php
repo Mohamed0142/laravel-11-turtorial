@@ -41,7 +41,7 @@ Route::get('jobs.show', function ($id)  {
 });
 
 Route::post('/jobs', function () {
-    // validatie
+
     job::create([
         'title' => request('title'),
         'salary' => request('salary'),
